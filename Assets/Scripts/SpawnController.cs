@@ -5,11 +5,15 @@ public class SpawnController : MonoBehaviour {
 
 	public GameObject wallPreFab;//Objeto a ser Spawnado
 	public float rateSpawn;//De quanto em quanto tempo será gerado uma barreira
-	public float currentTime;//Tempo entre um spawn e outro
+	private float currentTime;//Tempo entre um spawn e outro
 
 	//Para gerar aleatoriamente as posições "y" da parede
 	private int position;
 	private float y;
+	
+	//Possiveis posições para o "y"
+	private float positionA = -0.08f;
+	private float positionB = -1.31f;
 	
 	// Use this for initialization
 	void Start () {
@@ -22,9 +26,9 @@ public class SpawnController : MonoBehaviour {
 		if(currentTime >= rateSpawn){
 			position = Random.Range(1,100);
 			if(position > 50){
-				y = 0.6f;
+				y = positionA;
 			}else{
-				y = -0.03f;
+				y = positionB;
 			}
 			
 			currentTime = 0;

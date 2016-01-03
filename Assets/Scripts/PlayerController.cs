@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour {
 	
 	void OnTriggerEnter2D(){
 		//verificar colidder do player se tocando
-		Debug.Log("Bateu");
+		//Debug.Log("Bateu");
+		Application.LoadLevel("GameOver");
 	}
 }

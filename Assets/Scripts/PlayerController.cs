@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour {
 	public float slideDuration;
 	private float slideTimeCont;
 	
+	//Colisor
+	public Transform colliderScenario;//Não deve confundir com o Collider da Unity
+	
 	// Use this for initialization
 	void Start () {
 		
@@ -26,10 +29,22 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		//Para evitar pulos multiplos
 		if(Input.GetButtonDown("Jump") && steppingDown){
-			slide = false;
+			if(slide == true){
+				colliderScenario.position = new Vector3(
+					colliderScenario.position.x,
+					colliderScenario.position.y + 0.37f,
+					colliderScenario.position.z
+				);
+				slide = false;
+			}
 			playerRigidbody2D.AddForce(new Vector2(0, jumpPower));
 		}
-		if(Input.GetButtonDown("Slide") && steppingDown){
+		if(Input.GetButtonDown("Slide") && steppingDown && slide == false){
+			colliderScenario.position = new Vector3(
+				colliderScenario.position.x,
+				colliderScenario.position.y - 0.37f,
+				colliderScenario.position.z
+			);
 			slide = true;
 			slideTimeCont = 0;
 		}
@@ -39,11 +54,21 @@ public class PlayerController : MonoBehaviour {
 		if(slide == true){
 			slideTimeCont += Time.deltaTime;
 			if(slideTimeCont >= slideDuration){
+				colliderScenario.position = new Vector3(
+					colliderScenario.position.x,
+					colliderScenario.position.y + 0.37f,
+					colliderScenario.position.z
+				);
 				slide = false;
 			}
 		}
 		
 		animator.SetBool("jump", !steppingDown);
 		animator.SetBool("slide", slide);
+	}
+	
+	void OnTriggerEnter2D(){
+		//verificar colidder do player se tocando
+		Debug.Log("Bateu");
 	}
 }

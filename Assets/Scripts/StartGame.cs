@@ -10,7 +10,11 @@ public class StartGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetButtonDown("Jump")){
+		RouteToScene();
+	}
+	
+	void RouteToScene(){
+		if(Input.touchCount > 0){
 			Application.LoadLevel("GamePlay");
 		}
 	}

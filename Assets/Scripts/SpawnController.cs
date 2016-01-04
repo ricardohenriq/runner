@@ -22,6 +22,10 @@ public class SpawnController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		WallFactory();
+	}
+	
+	void WallFactory(){
 		currentTime += Time.deltaTime;
 		if(currentTime >= rateSpawn){
 			position = Random.Range(1,100);

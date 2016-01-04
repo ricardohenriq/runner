@@ -14,8 +14,12 @@ public class MoveOffset : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		UpdateOffset("_MainTex", speedOffsetMoviment);
+	}
+	
+	void UpdateOffset(string texture, float speedOffset){
 		//BufferOverFlow
-		offset += speedOffsetMoviment * Time.deltaTime;
-		currentMaterial.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+		offset += speedOffset * Time.deltaTime;
+		currentMaterial.SetTextureOffset(texture, new Vector2(offset, 0));
 	}
 }

@@ -42,9 +42,9 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		DisplayScore();
+		CheckPlayerInGround();
 		MakeJump();
 		MakeSlide();
-		CheckPlayerInGround();
 		PerformSlide();
 		animator.SetBool("jump", !steppingDown);
 		animator.SetBool("slide", slide);
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour {
 				}
 				audio.PlayOneShot(audioJump);
 				audio.volume = 0.75f;
-				playerRigidbody2D.AddForce(Vector2.up * jumpPower / 7);
+				playerRigidbody2D.AddForce(new Vector2(0, jumpPower / 7));
 			}
 		}
 	}
